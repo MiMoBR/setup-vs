@@ -4,7 +4,7 @@ import AddToDoList from '../routesPages/auth/add-to-do-list'
 const IndexPage = () => {
     return (
         <>
-            <AddToDoList/>
+            <AddToDoList />
         </>
     )
 }

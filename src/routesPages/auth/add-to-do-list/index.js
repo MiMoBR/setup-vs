@@ -1,23 +1,39 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import Layout from '../../../components/Layout'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { addBird, incrementBird } from '../../../store/birds/birds'
 
 const AddToDoList = () => {
-  const {
-    register,
-    // watch, 
-    formState: { errors, isValid },
-    handleSubmit,
-  } = useForm({ mode: 'all' })
+    // const [birdName, setBird] = useState('')
+    console.log("state      ", useSelector(state => state.birds))
+    const birds = useSelector(state => state.birds)
+    const dispatch = useDispatch()
 
-  const [baseList, setBaseList] = useState([
-      {newTask: 'Primeira task 1'},
-  ])
+    // const handleSubmitOld = event => {
+    //     event.preventDefault()
+    //     dispatch(addBird(birdName))
+    //     setBird('')
+    // }
 
-  const addNewItem = data => {
-      console.log('baseList      ', baseList)
-      setBaseList((baseList) => [...baseList, data])
-  }
+    const {
+        register,
+        // watch, 
+        formState: { errors, isValid },
+        handleSubmit,
+        reset,
+    } = useForm({ mode: 'all' })
+
+    const [baseList, setBaseList] = useState([
+        {newTask: 'Primeira task 1'},
+    ])
+    
+    const addNewItem = data => {
+        console.log("data   ",data.newTask)
+        dispatch(addBird(data.newTask))
+        setBaseList((baseList) => [...baseList, data])
+        reset()
+    }
 
     return (
         <Layout>
@@ -26,11 +42,21 @@ const AddToDoList = () => {
                 {JSON.stringify(watch(), null, 2)}
             </pre> */}
                 <>
-                    <p>Coloque aqui</p>
+                    <p>-----------Redux-----------</p>
                     <div>
-                        <p>Os itens aqui:</p>
+                        <p>Os itens aqui local:</p>
+                        {birds.map( (item, key) => {
+                            return (
+                                <div key={key}>
+                                    <p>{item.name}</p>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <p>-----------baselist -----------</p>
+                    <div>
+                        <p>Os itens aqui local:</p>
                         {baseList.map( (item, key) => {
-                            console.log("item ",item)
                             return (
                                 <div key={key}>
                                     <p>{item.newTask}</p>
@@ -39,6 +65,7 @@ const AddToDoList = () => {
                         })}
                     </div>
                     <>
+                        <p>-----------form  react form-----------</p>
                         <input type="text"
                             placeholder='sua tarefa aqui'
                             {...register("newTask", { required: true, maxLength: 200, minLength:2 })}
@@ -49,10 +76,26 @@ const AddToDoList = () => {
                     disabled={!isValid}
                     type="submit"
                     >
-                    add
+                        <p>add</p>
                     </button>
                 </>
             </form>
+            {/* <p>-----------form  old-----------</p>
+            <form onSubmit={handleSubmitOld}>
+                <label>
+                <p>
+                    Add Bird
+                </p>
+                <input
+                    type="text"
+                    onChange={e => setBird(e.target.value)}
+                    value={birdName}
+                />
+                </label>
+                <div>
+                <button type="submit">Add</button>
+                </div>
+            </form> */}
         </Layout>
     )
 }
