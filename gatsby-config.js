@@ -6,7 +6,7 @@ module.exports = {
   plugins: ["gatsby-plugin-styled-components", {
     resolve: 'gatsby-plugin-google-analytics',
     options: {
-      "trackingId": ""
+      "trackingId": "UA-4535698566"
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
