@@ -5,7 +5,7 @@ import Layout from '../../../components/Layout'
 const AddToDoList = () => {
   const {
     register,
-    // watch,
+    // watch, 
     formState: { errors, isValid },
     handleSubmit,
   } = useForm({ mode: 'all' })
