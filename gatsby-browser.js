@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import birdApp from './src/store/birds/birds'
+import tasksListsApp from './src/store/tasksLists/tasksLists'
 
-const store = createStore(birdApp)
+const store = createStore(tasksListsApp)
 // import { ModalLoadingProvider } from '@hooks/ModalLoading'
 // import GlobalStyleComponent from './src/styles/global'
 // import './src/styles/global.css'
