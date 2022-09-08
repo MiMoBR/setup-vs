@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import Layout from '../../../components/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { addBird, incrementBird } from '../../../store/tasksLists/tasksLists'
+import { doneTaskList } from '../../../store/tasksLists/tasksLists'
 
 const ToDoList = () => {
   console.log("state      ", useSelector(state => state.tasksLists))
   const tasksLists = useSelector(state => state.tasksLists)
-  console.log("tasksLists    ", tasksLists)
+  const dispatch = useDispatch()
 
   const taskDone = (e) => {
     console.log(e.target.checked)
+    dispatch(doneTaskList())
   }
 
   return (

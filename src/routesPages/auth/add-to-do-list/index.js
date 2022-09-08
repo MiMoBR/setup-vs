@@ -6,7 +6,7 @@ import { addTasksLists } from '../../../store/tasksLists/tasksLists'
 
 const AddToDoList = () => {
 
-    console.log("state      ", useSelector(state => state.tasksLists))
+    // console.log("state      ", useSelector(state => state.tasksLists))
     const tasksLists = useSelector(state => state.tasksLists)
     const dispatch = useDispatch()
 
@@ -18,14 +18,14 @@ const AddToDoList = () => {
         reset,
     } = useForm({ mode: 'all' })
 
-    const [baseList, setBaseList] = useState([
-        {newTask: 'Primeira task 1'},
-    ])
+    // const [baseList, setBaseList] = useState([
+    //     {newTask: 'Primeira task 1'},
+    // ])
 
     const addNewItem = data => {
-        console.log("data   ",data.newTask)
+        // console.log("data   ",data.newTask)
         dispatch(addTasksLists(data.newTask))
-        setBaseList((baseList) => [...baseList, data])
+        // setBaseList((baseList) => [...baseList, data])
         reset()
     }
 

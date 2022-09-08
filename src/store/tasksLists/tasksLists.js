@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
 
-const ADD_TASKS_LISTS = 'ADD_TASKS_LISTS'
+const ADD_TASK_LIST = 'ADD_TASK_LIST'
 const INCREMENT_TASKS_LISTS = 'INCREMENT_TASKS_LISTS'
+const DONE_TASK_LIST = "DONE_TASK_LIST"
 
 export function addTasksLists(tasksLists) {
   return {
-    type: ADD_TASKS_LISTS,
+    type: ADD_TASK_LIST,
     tasksLists,
   }
 }
@@ -13,6 +14,13 @@ export function addTasksLists(tasksLists) {
 export function incrementtasksLists(tasksLists) {
   return {
     type: INCREMENT_TASKS_LISTS,
+    tasksLists
+  }
+}
+
+export function doneTaskList(tasksLists) {
+  return {
+    type: DONE_TASK_LIST,
     tasksLists
   }
 }
@@ -26,8 +34,9 @@ const defaultTasksLists = [
 ]
 
 function tasksLists(state=defaultTasksLists, action) {
+  console.log("action       ",action)
   switch (action.type) {
-    case ADD_TASKS_LISTS:
+    case ADD_TASK_LIST:
       return [
         ...state,
         {
@@ -36,6 +45,16 @@ function tasksLists(state=defaultTasksLists, action) {
           done: false
         }
       ];
+    case DONE_TASK_LIST:
+      return [
+        ...state,
+        {
+
+          name: action.tasksLists,
+          views: 1,
+          done: false
+        }
+      ]
     // case INCREMENT_TASKS_LISTS:
     //   const tasksLists = state.find(b => action.tasksLists === b.name);
     //   const tasksLists = state.filter(b => action.tasksLists !== b.name);
